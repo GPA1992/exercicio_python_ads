@@ -1,0 +1,35 @@
+{
+    "alunos": [
+        {
+            "codigo": 1,
+            "nome": "Lucas",
+            "cpf": "999"
+        }
+    ],
+    "professores": [
+        {
+            "codigo": 1,
+            "nome": "João",
+            "cpf": "123456789"
+        }
+    ],
+    "disciplinas": [
+        {
+            "codigo": 1,
+            "nome": "Matemática"
+        }
+    ],
+    "turmas": [
+        {
+            "codigo": 1,
+            "codigo_professor": 1,
+            "codigo_disciplina": 1
+        }
+    ],
+    "matriculas": [
+        {
+            "codigo_turma": 1,
+            "codigo_estudante": 1
+        }
+    ]
+}

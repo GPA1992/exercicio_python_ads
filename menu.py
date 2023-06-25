@@ -1,0 +1,6 @@
+mn1 = (1, "ESTUDANTES", "(1) Gerenciar estudantes")
+mn2 = (2, "PROFESSORES", "(2) Gerenciar professores")
+mn3 = (3, "DISCIPLINA", "(3) Gerenciar disciplinas")
+mn4 = (4, "TURMAS", "(4) Gerenciar turmas")
+mn5 = (5, "MATRÍCULAS", "(5) Gerenciar matrículas")
+mnOut = (9, "SAIR", "(9) Sair")
