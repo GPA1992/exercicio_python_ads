@@ -1,6 +1,8 @@
 import opcoes
 import acoes
 import geral
+from gerenciar_dados import listar_todos, incluir
+from gerenciar_estudantes import excluir, atualizar
 
 
 def item_operacao(opt):
@@ -38,33 +40,35 @@ def executar_acao_estudante():
     acao = input("Escolha uma ação desejada: ")
     if acao == "1":
         print(acoes.act1)
-        estudante = input("Digite o nome do novo estudante: ")
-        estudantes.append(estudante)
-        geral.mensagem_sucesso(estudante)
+        estudante_nome = input("Digite o nome do novo estudante: ")
+        estudante_cpf = input("Digite o CPF do novo estudante: ")
+        incluir("alunos", {"nome": estudante_nome, "cpf": estudante_cpf})
+        geral.mensagem_sucesso(estudante_nome)
         executar_acao_estudante()
 
     if acao == "2":
         print(acoes.act2)
-        if len(estudantes) == 0:
-            print(geral.sem_estudantes_cadastrados)
-            executar_acao_estudante()
-        print(
-            """Lista de Estudantes
-              
-"""
-        )
-        for indice, estudante in enumerate(estudantes):
-            print(f"""{indice+1} - {estudante}""")
+        print("""Lista de Estudantes""")
+        listar_todos("alunos")
         print(geral.fim)
         executar_acao_estudante()
 
     if acao == "3":
         print(acoes.act3)
-        print(geral.em_desenvolvimento)
+        aluno_atualizar = input("Digite o código do estudante: ")
+        novo_nome = input("Digite o novo nome do estudante: ")
+        novo_cpf = input("Digite o novo CPF do estudante: ")
+        novo_codigo = input("Digite o novo codigo do estudante: ")
+        atualizar(
+            aluno_atualizar,
+            {"nome": novo_nome, "cpf": novo_cpf, "codigo": int(novo_codigo)},
+        )
         executar_acao_estudante()
     if acao == "4":
         print(acoes.act4)
-        print(geral.em_desenvolvimento)
+        codigo = input("Qual o código do aluno que deja excluir: ")
+        excluir(int(codigo))
+        print("Aluno excluido com sucesso!")
         executar_acao_estudante()
     if acao == "9":
         rodar_aplicacao()
