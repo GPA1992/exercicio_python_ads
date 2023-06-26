@@ -2,6 +2,7 @@ import opcoes
 import geral
 from gerenciar_estudantes import executar_acao_estudante
 from gerenciar_professores import executar_acao_professor
+from gerenciar_disciplinas import executar_acao_disciplina
 
 
 def item_operacao(opt):
@@ -13,9 +14,7 @@ def item_operacao(opt):
         return "professores"
     if opt == "3":
         print(opcoes.opt3)
-        print(geral.em_desenvolvimento)
-        input("Pressione qualquer tecla para voltar pro menu principal...")
-        rodar_aplicacao()
+        return "disciplinas"
     if opt == "4":
         print(opcoes.opt4)
         print(geral.em_desenvolvimento)
@@ -43,6 +42,9 @@ def executar_acao(item):
         executar_acao(item)
     if item == "professores":
         executar_acao_professor(acao)
+        executar_acao(item)
+    if item == "disciplinas":
+        executar_acao_disciplina(acao)
         executar_acao(item)
 
 

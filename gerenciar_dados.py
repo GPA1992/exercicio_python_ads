@@ -8,16 +8,11 @@ def listar_todos(nome_dado):
 
         dados_totais = carregar_arquivo()
         dados = dados_totais[nome_dado]
+        for dado in dados:
+            print("--------------------")
+            for key, value in dado.items():
+                print("{0}: {1}".format(key, value))
 
-        if dados_totais["alunos"] is not None:
-            for dado in dados:
-                nome = dado["nome"]
-                cpf = dado["cpf"]
-                codigo = dado["codigo"]
-                print("-------------------------")
-                print(f"Nome: {nome}")
-                print(f"CPF: {cpf}")
-                print(f"Código: {codigo}")
     except ValueError as error:
         print(f"Erro: {error}")
 
