@@ -11,8 +11,7 @@ def atualizar(codigo_disciplina, disciplina_atualizado):
         for disciplina in disciplinas:
             if disciplina["codigo"] == int(codigo_disciplina):
                 disciplina["nome"] = disciplina_atualizado["nome"]
-                disciplina["codigo"] = disciplina_atualizado["codigo"]
-
+                disciplina["codigo"] = int(disciplina_atualizado["codigo"])
         salvar_arquivo(dados_totais)
     except ValueError:
         print("O código da disciplina deve ser um número.")
@@ -22,7 +21,6 @@ def excluir(codigo_disciplina):
     try:
         dados_totais = carregar_arquivo()
         disciplinas = dados_totais["disciplinas"]
-
         for disciplina in disciplinas:
             if disciplina["codigo"] == int(codigo_disciplina):
                 disciplinas.remove(disciplina)
@@ -39,7 +37,7 @@ def executar_acao_disciplina(acao):
         print(acoes.act1)
         disciplina_nome = input("Digite o nome da nova disciplina: ")
         incluir("disciplinas", {"nome": disciplina_nome})
-        geral.mensagem_sucesso(disciplina_nome)
+        print(f"Disciplina {disciplina_nome} adicionada com sucesso")
 
     elif acao == "2":
         print(acoes.act2)
@@ -55,30 +53,14 @@ def executar_acao_disciplina(acao):
             if not isinstance(disciplina_atualizar, int):
                 raise ValueError("O código do disciplina deve ser um número.")
 
-            novo_nome = input("Digite o novo nome do disciplina: ")
-            if not isinstance(novo_nome, str):
-                raise ValueError("O nome do disciplina deve ser uma string.")
-
-            novo_cpf = input("Digite o novo CPF do disciplina: ")
-            if not isinstance(novo_cpf, str):
-                raise ValueError("O CPF do disciplina deve ser uma string.")
-
-            novo_codigo = input("Digite o novo código do disciplina: ")
-            if not novo_codigo.isdigit():
-                raise ValueError("O código do disciplina deve ser um número.")
-            disciplina_atualizado = {
-                "nome": novo_nome,
-                "cpf": novo_cpf,
-                "codigo": int(novo_codigo),
-            }
-
+            disciplina_nome = input("Digite o novo nome da disciplina: ")
+            disciplina_codigo = input("Digite o novo codigo da disciplina: ")
             atualizar(
                 disciplina_atualizar,
-                disciplina_atualizado,
+                {"nome": disciplina_nome, "codigo": disciplina_codigo},
             )
         except ValueError as error:
             print(f"Erro ao atualizar o disciplina: {error}")
-
     elif acao == "4":
         print(acoes.act4)
         codigo = input("Qual o código do disciplina que deseja excluir: ")

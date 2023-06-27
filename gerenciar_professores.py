@@ -41,7 +41,7 @@ def executar_acao_professor(acao):
         professor_nome = input("Digite o nome do novo professor: ")
         professor_cpf = input("Digite o CPF do novo professor: ")
         incluir("professores", {"nome": professor_nome, "cpf": professor_cpf})
-        geral.mensagem_sucesso(professor_nome)
+        print(f"Professor {professor_nome} adicionado com sucesso")
 
     elif acao == "2":
         print(acoes.act2)

@@ -4,6 +4,7 @@ from gerenciar_estudantes import executar_acao_estudante
 from gerenciar_professores import executar_acao_professor
 from gerenciar_disciplinas import executar_acao_disciplina
 from gerenciar_turmas import executar_acao_turma
+from gerenciar_matriculas import executar_acao_matricula
 
 
 def item_operacao(opt):
@@ -21,9 +22,7 @@ def item_operacao(opt):
         return "turmas"
     if opt == "5":
         print(opcoes.opt5)
-        print(geral.em_desenvolvimento)
-        input("Pressione qualquer tecla para voltar pro menu principal...")
-        rodar_aplicacao()
+        return "matriculas"
     if opt == "9":
         print(opcoes.opt9)
 
@@ -36,18 +35,19 @@ def executar_acao(item):
     acao = input("Escolha uma ação desejada: ")
     if acao == "9":
         rodar_aplicacao()
-    if item == "alunos":
+    elif item == "alunos":
         executar_acao_estudante(acao)
-        executar_acao(item)
-    if item == "professores":
+    elif item == "professores":
         executar_acao_professor(acao)
-        executar_acao(item)
-    if item == "disciplinas":
+    elif item == "disciplinas":
         executar_acao_disciplina(acao)
-        executar_acao(item)
-    if item == "turmas":
+    elif item == "turmas":
         executar_acao_turma(acao)
-        executar_acao(item)
+    elif item == "matriculas":
+        executar_acao_matricula(acao)
+    else:
+        print("Item inválido.")
+    executar_acao(item)
 
 
 def rodar_aplicacao():

@@ -10,7 +10,7 @@ def atualizar(codigo_turma, turma_atualizada):
         turmas = dados_totais["turmas"]
         for turma in turmas:
             if turma["codigo"] == int(codigo_turma):
-                turma["codigo"] = turma_atualizada["nome"]
+                turma["codigo"] = turma_atualizada["codigo"]
                 turma["codigo_professor"] = turma_atualizada["codigo_professor"]
                 turma["codigo_disciplina"] = turma_atualizada["codigo_disciplina"]
         salvar_arquivo(dados_totais)
@@ -35,18 +35,29 @@ def executar_acao_turma(acao):
     geral.menu_acoes()
     if acao == "1":
         print(acoes.act1)
-        turma_codigo_professor = input("Digite o código de professor da nova turma: ")
-        turma_codigo_disciplina = input(
-            "Digite o código da disciplina da nova turma:  "
-        )
+        while True:
+            try:
+                turma_codigo_professor = input(
+                    "Digite o código de professor da nova turma: "
+                )
+                turma_codigo_disciplina = input(
+                    "Digite o código da disciplina da nova turma: "
+                )
+                turma_codigo_professor = int(turma_codigo_professor)
+                turma_codigo_disciplina = int(turma_codigo_disciplina)
+                break
+            except ValueError:
+                print("Erro: Precisa ser números")
+
         incluir(
             "turmas",
             {
-                "codigo_professor": int(turma_codigo_professor),
-                "codigo_disciplina": int(turma_codigo_disciplina),
+                "codigo_professor": turma_codigo_professor,
+                "codigo_disciplina": turma_codigo_disciplina,
             },
         )
-        geral.mensagem_sucesso("Nova Turma Adicionada")
+        print("Nova Turma Adicionada")
+
     elif acao == "2":
         print(acoes.act2)
         print("Lista de turmas")
@@ -61,21 +72,22 @@ def executar_acao_turma(acao):
             if not isinstance(turma_atualizar, int):
                 raise ValueError("O código do turma deve ser um número.")
 
-            novo_nome = input("Digite o novo nome do turma: ")
-            if not isinstance(novo_nome, str):
-                raise ValueError("O nome do turma deve ser uma string.")
+            novo_codigo_professor = input("Digite o novo código do professor: ")
+            if not novo_codigo_professor.isdigit():
+                raise ValueError("O código do professor deve ser um número.")
 
-            novo_cpf = input("Digite o novo CPF do turma: ")
-            if not isinstance(novo_cpf, str):
-                raise ValueError("O CPF do turma deve ser uma string.")
+            novo_codigo_disciplina = input("Digite o novo código da disciplina: ")
+            if not novo_codigo_disciplina.isdigit():
+                raise ValueError("O código da disciplina deve ser um número.")
 
-            novo_codigo = input("Digite o novo código do turma: ")
-            if not novo_codigo.isdigit():
-                raise ValueError("O código do turma deve ser um número.")
+            novo_codigo_turma = input("Digite o novo código da turma: ")
+            if not novo_codigo_disciplina.isdigit():
+                raise ValueError("O código da disciplina deve ser um número.")
+
             turma_atualizada = {
-                "nome": novo_nome,
-                "cpf": novo_cpf,
-                "codigo": int(novo_codigo),
+                "codigo_professor": int(novo_codigo_professor),
+                "codigo_disciplina": int(novo_codigo_disciplina),
+                "codigo": int(novo_codigo_turma),
             }
 
             atualizar(
